@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string.h>
+#include <cstring>
 #include <string>
 #include <memory>
 #include "Huffman.h"
@@ -13,34 +13,34 @@ int main(int argc, char **argv) {
         const char *input_file = nullptr;
         const char *output_file = nullptr;
 
-        if (argv[1][1] == 'c') {
-            if (!strcmp(argv[2], "-f") || !strcmp(argv[2], "--file")) {
+        if (string(argv[1]) == "-c") {
+            if (!(string(argv[2]) == "-f") || !(string(argv[2]) == "--file")) {
                 input_file = argv[3];
             }
-            else if (!strcmp(argv[4], "-f") || !strcmp(argv[4], "--file")) {
+            else if (!(string(argv[4]) == "-f") || !(string(argv[4]) == "--file")) {
                 input_file = argv[5];
             }
-            if (!strcmp(argv[2], "-o") || !strcmp(argv[2], "--output")){
+            if (!(string(argv[2]) == "-o") || !(string(argv[2]) == "--output")){
                 output_file = argv[3];
             }
-            else if (!strcmp(argv[4], "-o") || !strcmp(argv[4], "--output")) {
+            else if (!(string(argv[4]) == "-o") || !(string(argv[4]) == "--output")) {
                 output_file = argv[5];
             }
             my_Huffman::Huffman h(input_file, output_file);
             h.Compress();
 
         }
-        else if (argv[1][1] == 'u') {
-            if (!strcmp(argv[2], "-f") || !strcmp(argv[2], "--file")) {
+        else if (string(argv[1]) == "u") {
+            if (!(string(argv[2]) == "-f") || !(string(argv[2]) == "--file")) {
                 input_file = argv[3];
             }
-            else if (!strcmp(argv[4], "-f") || !strcmp(argv[4], "--file")) {
+            else if (!(string(argv[4]) == "-f") || !(string(argv[4]) == "--file")) {
                 input_file = argv[5];
             }
-            if (!strcmp(argv[2], "-o") || !strcmp(argv[2], "--output")){
+            if (!(string(argv[2]) == "-o") || !(string(argv[2]) == "--output")){
                 output_file = argv[3];
             }
-            else if (!strcmp(argv[4], "-o") || !strcmp(argv[4], "--output")) {
+            else if (!(string(argv[4]) == "-o") || !(string(argv[4]) == "--output")) {
                 output_file = argv[5];
             }
 
