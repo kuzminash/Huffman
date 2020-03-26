@@ -37,11 +37,11 @@ namespace my_Tree {
         for (auto p:node_vector) {
             Q1.push(p);
         }
-        std::size_t tree_size = Q1.size();
-        if (Q1.size() == 0) {
-            root = nullptr;
-            return;
+        while(Q1.size() < 2) {
+            Node *new_node = new Node(' ', INT32_MAX / 2, nullptr, nullptr);
+            Q1.push(new_node);
         }
+        std::size_t tree_size = Q1.size();
         Node *first = nullptr, *second = nullptr;
         for (std::size_t i = tree_size; i < 2 * tree_size - 1; i++) {
             first = Q1.top(), Q1.pop();
@@ -80,8 +80,8 @@ namespace my_Tree {
         return root;
     }
 
-    HuffmanTree::Node::Node(char symbol, std::size_t freq, HuffmanTree::Node *left, HuffmanTree::Node *right) : symbol {symbol},
-                                                        freq{freq}, left{left}, right{right} {
+    HuffmanTree::Node::Node(char symbol, std::size_t freq, HuffmanTree::Node *left, HuffmanTree::Node *right) :
+                                                    symbol {symbol}, freq{freq}, left{left}, right{right} {
     }
 
     bool HuffmanTree::Node::Comparator::operator()(const HuffmanTree::Node *first, const HuffmanTree::Node *second) {

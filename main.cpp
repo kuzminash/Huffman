@@ -43,10 +43,10 @@ int main(int argc, char **argv) {
     }
     /*
     ofstream file;
-    file.open("b.txt");
+    file.open("l.txt");
     for(int i = 0; i < 5000000; i++) {
         file << 'a';
     }
     file.close();
-*/
+    */
 }
