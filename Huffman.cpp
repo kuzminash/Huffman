@@ -53,7 +53,7 @@ namespace my_Huffman {
             }
             std::vector<bool> x = Tree.table[c];
             for (std::size_t i = 0; i < x.size(); i++) {
-                buffer = buffer| x[i] << ((CHAR_BIT - 1) - count);
+                buffer = buffer | x[i] << ((CHAR_BIT - 1) - count);
                 count++;
                 if (count == CHAR_BIT) {
                     count = 0;

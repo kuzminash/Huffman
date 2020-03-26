@@ -80,11 +80,8 @@ namespace my_Tree {
         return root;
     }
 
-    HuffmanTree::Node::Node(char symbol, std::size_t freq, HuffmanTree::Node *left, HuffmanTree::Node *right) : symbol
-                                                                                                                        {symbol},
-                                                                                                                freq{freq},
-                                                                                                                left{left},
-                                                                                                                right{right} {
+    HuffmanTree::Node::Node(char symbol, std::size_t freq, HuffmanTree::Node *left, HuffmanTree::Node *right) : symbol {symbol},
+                                                        freq{freq}, left{left}, right{right} {
     }
 
     bool HuffmanTree::Node::Comparator::operator()(const HuffmanTree::Node *first, const HuffmanTree::Node *second) {
