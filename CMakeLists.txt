@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
-project(Huffman)
+project(hw_03)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Huffman main.cpp Tree.cpp Huffman.cpp HuffmanException.cpp Huffman.h HuffmanException.h Tree.h)
+include_directories(include)
+
+add_executable(hw_03 src/main.cpp src/Tree.cpp src/Huffman.cpp src/HuffmanException.cpp
+                            include/Huffman.h include/HuffmanException.h include/Tree.h)

@@ -38,7 +38,7 @@ namespace my_Tree {
             Q1.push(p);
         }
         while(Q1.size() < 2) {
-            Node *new_node = new Node(' ', INT32_MAX / 2, nullptr, nullptr);
+            Node *new_node = new Node(' ', 0, nullptr, nullptr);
             Q1.push(new_node);
         }
         std::size_t tree_size = Q1.size();
