@@ -5,5 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(include)
 
+include_directories(test)
+
 add_executable(hw_03 src/main.cpp src/Tree.cpp src/Huffman.cpp src/HuffmanException.cpp
-                            include/Huffman.h include/HuffmanException.h include/Tree.h)
+                            include/Huffman.h include/HuffmanException.h include/Tree.h test/autotest.cpp test/autotest.h test/test.cpp test/Huffman_test.cpp test/Huffman_test.h)

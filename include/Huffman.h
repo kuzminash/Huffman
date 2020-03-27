@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <iostream>
 #include "Tree.h"
 
 namespace my_Huffman {

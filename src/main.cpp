@@ -7,6 +7,7 @@
 using namespace std;
 
 int main(int argc, char **argv) {
+    /*
     try {
 
         const char *input_file = nullptr;
@@ -41,12 +42,9 @@ int main(int argc, char **argv) {
     catch (...) {
         std::cout << "Unknown error" << '\n';
     }
-    /*
+     */
     ofstream file;
-    file.open("l.txt");
-    for(int i = 0; i < 5000000; i++) {
-        file << 'a';
-    }
+    file.open("../test_files/empty.txt");
+    file << 'a';
     file.close();
-    */
 }
