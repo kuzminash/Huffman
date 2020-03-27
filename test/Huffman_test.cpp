@@ -23,7 +23,7 @@ namespace my_huffman_tests {
         } else Passed++;
         if (!CheckTree()) {
             std::cout << "Program couldn't properly create tree\n";
-        else Passed++;
+        } else Passed++;
         if(!Statistics()) {
             std::cout << "Statistics method doesn't count properly\n";
         } else Passed++;
