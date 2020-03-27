@@ -21,10 +21,10 @@ namespace my_huffman_tests {
         if (!CountFreq()) {
             std::cout << "Program couldn't count symbols frequency properly\n";
         } else Passed++;
-        /*if (!CheckTree()) {
+        if (!CheckTree()) {
             std::cout << "Program couldn't properly create tree\n";
-        } else Passed++;
-        */if(!Statistics()) {
+        else Passed++;
+        if(!Statistics()) {
             std::cout << "Statistics method doesn't count properly\n";
         } else Passed++;
     }
