@@ -11,7 +11,7 @@ namespace my_base_autotest_class {
     public:
         AutoTest();
 
-        virtual int RunTests() = 0;
+        virtual void RunAllTests() = 0;
 
         void Result();
     protected:

@@ -7,10 +7,25 @@ namespace my_huffman_tests {
     }
 
     void HuffmanTest::RunAllTests() {
-
+        if (!FirstFile()) {
+            std::cout << "Failed on empty file\n";
+        }
+        else Passed++;
+        if (!SecondFile()) {
+            std::cout << "Failed on one symbol file\n";
+        }
+        else Passed++;
+        if (!ThirdFile()) {
+            std::cout << "Failed om War and Peace\n";
+        }
+        else Passed++;
+        if(!FourthFile()) {
+            std::cout << "Failed on 5000000 same symbols file\n";
+        }
+        else Passed++;
     }
 
-     void HuffmanTest::CreateFile(const char* first, const char* second, const char* third) {
+    void HuffmanTest::CreateFile(const char *first, const char *second, const char *third) {
         my_Huffman::Huffman h1(first, second);
         h1.Compress();
         my_Huffman::Huffman h2(second, third);
@@ -28,12 +43,14 @@ namespace my_huffman_tests {
     }
 
     bool HuffmanTest::ThirdFile() {
-        CreateFile("../test_files/war_and_peace.txt", "../test_files/war_and_peace.bin", "../test_files/war_and_peace.txt");
-        return CheckIfSimilar("../test_files/war_and_peace.txt", "../test_files/war_amd_peace_test.txt");
+        CreateFile("../test_files/war_and_peace.txt", "../test_files/war_and_peace.bin",
+                   "../test_files/war_and_peace_test.txt");
+        return CheckIfSimilar("../test_files/war_and_peace.txt", "../test_files/war_and_peace_test.txt");
     }
 
     bool HuffmanTest::FourthFile() {
-        CreateFile("../test_files/5000000_same_symbols.txt", "../test_files/5000000_same_symbols.bin", "../test_files/5000000_same_symbols_test.txt");
+        CreateFile("../test_files/5000000_same_symbols.txt", "../test_files/5000000_same_symbols.bin",
+                   "../test_files/5000000_same_symbols_test.txt");
         return CheckIfSimilar("../test_files/5000000_same_symbols.txt", "../test_files/5000000_same_symbols_test.txt");
     }
 

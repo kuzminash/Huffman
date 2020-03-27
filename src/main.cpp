@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <string>
 #include <memory>
 #include "Huffman.h"
@@ -7,7 +7,6 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-    /*
     try {
 
         const char *input_file = nullptr;
@@ -20,6 +19,7 @@ int main(int argc, char **argv) {
                 output_file = argv[5];
                 my_Huffman::Huffman h(input_file, output_file);
                 h.Compress();
+                h.Statistics();
             }
         } else if (string(argv[1]) == "-u") {
             if ((string(argv[2]) == "-f" || string(argv[2]) == "--file") &&
@@ -28,6 +28,7 @@ int main(int argc, char **argv) {
                 output_file = argv[5];
                 my_Huffman::Huffman h(input_file, output_file);
                 h.Decompress();
+                h.Statistics();
             }
         } else {
             throw my_exception::HuffmanException(my_exception::HuffmanException::Exception_type::ARG);
@@ -42,9 +43,11 @@ int main(int argc, char **argv) {
     catch (...) {
         std::cout << "Unknown error" << '\n';
     }
-     */
+/*
     ofstream file;
     file.open("../test_files/empty.txt");
     file << 'a';
     file.close();
+
 }
+*/

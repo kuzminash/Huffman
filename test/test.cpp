@@ -1,8 +1,8 @@
 #include <Huffman_test.h>
 
-/*int main() {
+int main() {
     my_huffman_tests::HuffmanTest test;
-    test.RunTests();
+    test.RunAllTests();
     test.Result();
     return 0;
-}*/
+}

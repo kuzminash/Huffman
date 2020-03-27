@@ -15,6 +15,8 @@ namespace my_Huffman {
 
         void Decompress();
 
+        void Statistics();
+
     private:
         void CountFreq();
 
@@ -26,7 +28,7 @@ namespace my_Huffman {
 
         void ReadBits(my_Tree::HuffmanTree &Tree);
 
-        void Statistics();
+        void CleanFiles();
 
         std::size_t quant = 0;
         std::size_t frequency[my_Tree::ELEMENTS] = {0};

@@ -5,10 +5,6 @@
 #include <fstream>
 
 namespace my_huffman_tests {
-    enum {
-        PASSED,
-        FAILED
-    };
 
     class HuffmanTest final : public my_base_autotest_class::AutoTest {
     public:

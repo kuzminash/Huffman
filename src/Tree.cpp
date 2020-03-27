@@ -38,7 +38,7 @@ namespace my_Tree {
             Q1.push(p);
         }
         while(Q1.size() < 2) {
-            Node *new_node = new Node(' ', 0, nullptr, nullptr);
+            Node *new_node = new Node(' ', INT32_MAX, nullptr, nullptr);
             Q1.push(new_node);
         }
         std::size_t tree_size = Q1.size();
@@ -53,7 +53,6 @@ namespace my_Tree {
     }
 
     void HuffmanTree::BuildNewCodes(Node *root) {
-        static std::vector<bool> code;
         if (!root) {
             return;
         }

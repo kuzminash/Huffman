@@ -27,6 +27,7 @@ namespace my_Huffman {
         while (!input_file.eof()) {
             frequency[(int) symbol]++;
             input_file.read((char *) &symbol, sizeof(char));
+
             if ((input_file.fail() || input_file.bad()) && !input_file.eof()) {
                 throw my_exception::HuffmanException(my_exception::HuffmanException::Exception_type::READ);
             }
@@ -73,12 +74,15 @@ namespace my_Huffman {
         }
     }
 
-    void Huffman::Statistics() {
+    void Huffman::CleanFiles() {
         input_file.clear();
         input_file.seekg(0, std::ifstream::end);
-        std::cout << input_file.tellg() << '\n';
         output_file.clear();
         output_file.seekp(0, std::iostream::end);
+    }
+
+    void Huffman::Statistics() {
+        std::cout << input_file.tellg() << '\n';
         std::cout << output_file.tellp() << '\n';
         std::cout << my_Tree::ELEMENTS * sizeof(std::size_t) << '\n';
     }
@@ -88,7 +92,7 @@ namespace my_Huffman {
         my_Tree::HuffmanTree Tree(frequency);
         Tree.BuildNewCodes(Tree.get_root());
         WriteToFile(Tree);
-        Statistics();
+        CleanFiles();
     }
 
     void Huffman::ReadFreq() {
@@ -137,7 +141,7 @@ namespace my_Huffman {
         my_Tree::HuffmanTree Tree(frequency);
         Tree.BuildNewCodes(Tree.get_root());
         ReadBits(Tree);
-        Statistics();
+        CleanFiles();
     }
 
 }

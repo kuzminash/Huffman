@@ -44,6 +44,7 @@ namespace my_Tree {
         std::vector<Node *> node_vector;
     private:
         Node *root;
+        std::vector<bool> code;
     };
 
 }
