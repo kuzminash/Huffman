@@ -37,7 +37,7 @@ namespace my_Tree {
         for (auto p:node_vector) {
             Q1.push(p);
         }
-        while(Q1.size() < 2) {
+        while (Q1.size() < 2) {
             Node *new_node = new Node(' ', INT32_MAX, nullptr, nullptr);
             Q1.push(new_node);
         }
@@ -80,7 +80,7 @@ namespace my_Tree {
     }
 
     HuffmanTree::Node::Node(char symbol, std::size_t freq, HuffmanTree::Node *left, HuffmanTree::Node *right) :
-                                                    symbol {symbol}, freq{freq}, left{left}, right{right} {
+                                                            symbol{symbol}, freq{freq}, left{left}, right{right} {
     }
 
     bool HuffmanTree::Node::Comparator::operator()(const HuffmanTree::Node *first, const HuffmanTree::Node *second) {

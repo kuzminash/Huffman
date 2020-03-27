@@ -13,7 +13,7 @@ namespace my_huffman_tests {
         void RunAllTests() override;
 
     protected:
-        void CreateFile(const char* first, const char* second, const char* third);
+        void CreateFile(const char *first, const char *second, const char *third);
 
         bool FirstFile();
 

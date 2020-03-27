@@ -1,4 +1,4 @@
-/*#include <iostream>
+#include <iostream>
 #include <string>
 #include <memory>
 #include "Huffman.h"
@@ -43,11 +43,4 @@ int main(int argc, char **argv) {
     catch (...) {
         std::cout << "Unknown error" << '\n';
     }
-/*
-    ofstream file;
-    file.open("../test_files/empty.txt");
-    file << 'a';
-    file.close();
-
 }
-*/

@@ -14,6 +14,7 @@ namespace my_base_autotest_class {
         virtual void RunAllTests() = 0;
 
         void Result();
+
     protected:
         bool CheckIfSimilar(const char *first, const char *second);
 

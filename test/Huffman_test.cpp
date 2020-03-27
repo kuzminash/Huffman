@@ -9,20 +9,16 @@ namespace my_huffman_tests {
     void HuffmanTest::RunAllTests() {
         if (!FirstFile()) {
             std::cout << "Failed on empty file\n";
-        }
-        else Passed++;
+        } else Passed++;
         if (!SecondFile()) {
             std::cout << "Failed on one symbol file\n";
-        }
-        else Passed++;
+        } else Passed++;
         if (!ThirdFile()) {
             std::cout << "Failed om War and Peace\n";
-        }
-        else Passed++;
-        if(!FourthFile()) {
+        } else Passed++;
+        if (!FourthFile()) {
             std::cout << "Failed on 5000000 same symbols file\n";
-        }
-        else Passed++;
+        } else Passed++;
     }
 
     void HuffmanTest::CreateFile(const char *first, const char *second, const char *third) {
