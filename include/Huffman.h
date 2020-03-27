@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <Huffman_test.h>
 #include "Tree.h"
 
 namespace my_Huffman {
@@ -15,8 +16,9 @@ namespace my_Huffman {
 
         void Decompress();
 
-        void Statistics();
+        std::tuple<size_t, size_t, size_t> Statistics();
 
+        friend class my_huffman_tests::HuffmanTest;
     private:
         void CountFreq();
 

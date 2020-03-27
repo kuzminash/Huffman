@@ -1,5 +1,7 @@
 #include <iostream>
+#include<tuple>
 #include "Huffman_test.h"
+#include "Tree.h"
 #include "Huffman.h"
 
 namespace my_huffman_tests {
@@ -7,17 +9,23 @@ namespace my_huffman_tests {
     }
 
     void HuffmanTest::RunAllTests() {
-        if (!FirstFile()) {
+        /*if (!FirstFile()) {
             std::cout << "Failed on empty file\n";
         } else Passed++;
-        if (!SecondFile()) {
+        */if (!SecondFile()) {
             std::cout << "Failed on one symbol file\n";
         } else Passed++;
         if (!ThirdFile()) {
-            std::cout << "Failed om War and Peace\n";
+            std::cout << "Failed om random file\n";
         } else Passed++;
-        if (!FourthFile()) {
-            std::cout << "Failed on 5000000 same symbols file\n";
+        if (!CountFreq()) {
+            std::cout << "Program couldn't count symbols frequency properly\n";
+        } else Passed++;
+        /*if (!CheckTree()) {
+            std::cout << "Program couldn't properly create tree\n";
+        } else Passed++;
+        */if(!Statistics()) {
+            std::cout << "Statistics method doesn't count properly\n";
         } else Passed++;
     }
 
@@ -39,15 +47,55 @@ namespace my_huffman_tests {
     }
 
     bool HuffmanTest::ThirdFile() {
-        CreateFile("../test_files/war_and_peace.txt", "../test_files/war_and_peace.bin",
-                   "../test_files/war_and_peace_test.txt");
-        return CheckIfSimilar("../test_files/war_and_peace.txt", "../test_files/war_and_peace_test.txt");
+        CreateFile("../test_files/tests.txt", "../test_files/tests.bin",
+                   "../test_files/tests_test.txt");
+        return CheckIfSimilar("../test_files/tests.txt", "../test_files/tests_test.txt");
     }
 
-    bool HuffmanTest::FourthFile() {
-        CreateFile("../test_files/5000000_same_symbols.txt", "../test_files/5000000_same_symbols.bin",
-                   "../test_files/5000000_same_symbols_test.txt");
-        return CheckIfSimilar("../test_files/5000000_same_symbols.txt", "../test_files/5000000_same_symbols_test.txt");
+    bool HuffmanTest::DFS(my_Tree::HuffmanTree::Node &node) {
+        if (node.left != nullptr && node.right != nullptr) {
+            if (node.freq == (node.left->freq + node.right->freq)) {
+                passed = DFS(*node.left);
+                passed = DFS(*node.right);
+            } else return false;
+        } else if (node.left != nullptr) {
+            if (node.freq == node.left->freq) {
+                passed = DFS(*node.left);
+            } else return false;
+        } else if (node.right != nullptr) {
+            if (node.freq == node.right->freq) {
+                passed = DFS(*node.right);
+            } else return false;
+        }
+        return passed;
+    }
+
+    bool HuffmanTest::CheckTree() {
+        my_Huffman::Huffman h3("../test_files/tests.txt", "../test_files/lala.bin");
+        h3.CountFreq();
+        my_Tree::HuffmanTree Tree(h3.frequency);
+        passed = true;
+        return DFS(*Tree.get_root());
+    }
+
+
+    bool HuffmanTest::CountFreq() {
+        my_Huffman::Huffman h4("../test_files/one_symbol.txt", "../test_files/lala.bin");
+        h4.CountFreq();
+        return h4.frequency[97] == 1;
+    }
+
+    bool HuffmanTest::Statistics() {
+        my_Huffman::Huffman h5("../test_files/one_symbol.txt", "../test_files/one_symbol.bin");
+        h5.CleanFiles();
+        auto statistics = h5.Statistics();
+        std::cout << std::get<0>(statistics) << '\n'
+                  << std::get<1>(statistics) << '\n'
+                  << std::get<2>(statistics) << '\n';
+
+        return std::get<0>(statistics) == 1 &&
+               std::get<1>(statistics) == 2049 &&
+               std::get<2>(statistics) == 2048;
     }
 
 }

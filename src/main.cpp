@@ -1,6 +1,7 @@
-#include <iostream>
+/*#include <iostream>
 #include <string>
 #include <memory>
+#include <tuple>
 #include "Huffman.h"
 #include "HuffmanException.h"
 
@@ -19,7 +20,10 @@ int main(int argc, char **argv) {
                 output_file = argv[5];
                 my_Huffman::Huffman h(input_file, output_file);
                 h.Compress();
-                h.Statistics();
+                auto statistics = h.Statistics();
+                std::cout << std::get<0>(statistics) << '\n'
+                          << std::get<1>(statistics) << '\n'
+                          << std::get<2>(statistics) << '\n';
             }
         } else if (string(argv[1]) == "-u") {
             if ((string(argv[2]) == "-f" || string(argv[2]) == "--file") &&
@@ -28,7 +32,10 @@ int main(int argc, char **argv) {
                 output_file = argv[5];
                 my_Huffman::Huffman h(input_file, output_file);
                 h.Decompress();
-                h.Statistics();
+                auto statistics = h.Statistics();
+                std::cout << get<0>(statistics) << '\n'
+                          << get<1>(statistics) << '\n'
+                          << get<2>(statistics) << '\n';
             }
         } else {
             throw my_exception::HuffmanException(my_exception::HuffmanException::Exception_type::ARG);
@@ -44,3 +51,4 @@ int main(int argc, char **argv) {
         std::cout << "Unknown error" << '\n';
     }
 }
+*/

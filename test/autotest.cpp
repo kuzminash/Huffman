@@ -17,8 +17,6 @@ namespace my_base_autotest_class {
         while (!file1.eof()) {
             if (file1.get() != file2.get()) return false;
         }
-        if (file2.eof()) return true;
-        return false;
+        return file2.eof();
     }
-
 }

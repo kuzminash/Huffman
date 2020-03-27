@@ -2,6 +2,7 @@
 #include <fstream>
 #include <ostream>
 #include <climits>
+#include <tuple>
 #include "Huffman.h"
 #include "HuffmanException.h"
 #include "Tree.h"
@@ -31,8 +32,7 @@ namespace my_Huffman {
             if ((input_file.fail() || input_file.bad()) && !input_file.eof()) {
                 throw my_exception::HuffmanException(my_exception::HuffmanException::Exception_type::READ);
             }
-        }
-    }
+        }}
 
     void Huffman::WriteTable() {
         output_file.write(reinterpret_cast<char *>(&(frequency[0])), sizeof(std::size_t) * my_Tree::ELEMENTS);
@@ -81,10 +81,8 @@ namespace my_Huffman {
         output_file.seekp(0, std::iostream::end);
     }
 
-    void Huffman::Statistics() {
-        std::cout << input_file.tellg() << '\n';
-        std::cout << output_file.tellp() << '\n';
-        std::cout << my_Tree::ELEMENTS * sizeof(std::size_t) << '\n';
+    std::tuple<size_t, size_t, size_t> Huffman::Statistics() {
+        return std::make_tuple(input_file.tellg(), output_file.tellp(), my_Tree::ELEMENTS * sizeof(std::size_t));
     }
 
     void Huffman::Compress() {

@@ -2,6 +2,7 @@
 #define HW_03_HUFFMAN_TEST_H
 
 #include "autotest.h"
+#include "Tree.h"
 #include <fstream>
 
 namespace my_huffman_tests {
@@ -12,7 +13,7 @@ namespace my_huffman_tests {
 
         void RunAllTests() override;
 
-    protected:
+    private:
         void CreateFile(const char *first, const char *second, const char *third);
 
         bool FirstFile();
@@ -21,7 +22,15 @@ namespace my_huffman_tests {
 
         bool ThirdFile();
 
-        bool FourthFile();
+        bool CountFreq();
+
+        bool CheckTree();
+
+        bool DFS(my_Tree::HuffmanTree::Node &node);
+
+        bool Statistics();
+
+        bool passed;
     };
 
 }
