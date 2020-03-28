@@ -1,4 +1,4 @@
-/*#include <iostream>
+#include <iostream>
 #include <string>
 #include <memory>
 #include <tuple>
@@ -51,4 +51,3 @@ int main(int argc, char **argv) {
         std::cout << "Unknown error" << '\n';
     }
 }
-*/
