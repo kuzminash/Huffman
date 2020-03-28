@@ -9,10 +9,10 @@ namespace my_huffman_tests {
     }
 
     void HuffmanTest::RunAllTests() {
-        /*if (!FirstFile()) {
+        if (!FirstFile()) {
             std::cout << "Failed on empty file\n";
         } else Passed++;
-        */if (!SecondFile()) {
+        if (!SecondFile()) {
             std::cout << "Failed on one symbol file\n";
         } else Passed++;
         if (!ThirdFile()) {
@@ -24,31 +24,36 @@ namespace my_huffman_tests {
         if (!CheckTree()) {
             std::cout << "Program couldn't properly create tree\n";
         } else Passed++;
-        if(!Statistics()) {
+        if (!Statistics()) {
             std::cout << "Statistics method doesn't count properly\n";
         } else Passed++;
     }
 
-    void HuffmanTest::CreateFile(const char *first, const char *second, const char *third) {
+    void HuffmanTest::CreateCompressFile(const char *first, const char *second) {
         my_Huffman::Huffman h1(first, second);
         h1.Compress();
-        my_Huffman::Huffman h2(second, third);
+    }
+
+    void HuffmanTest::CreateDecompressFile(const char *first, const char *second) {
+        my_Huffman::Huffman h2(first, second);
         h2.Decompress();
     }
 
     bool HuffmanTest::FirstFile() {
-        CreateFile("../test_files/empty.txt", "../test_files/empty.bin", "../test_files/empty_test.txt");
+        CreateCompressFile("../test_files/empty.txt", "../test_files/empty.bin");
+        CreateDecompressFile( "../test_files/empty.bin", "../test_files/empty_test.txt");
         return CheckIfSimilar("../test_files/empty.txt", "../test_files/empty_test.txt");
     }
 
     bool HuffmanTest::SecondFile() {
-        CreateFile("../test_files/one_symbol.txt", "../test_files/one_symbol.bin", "../test_files/one_symbol_test.txt");
+        CreateCompressFile("../test_files/one_symbol.txt", "../test_files/one_symbol.bin");
+        CreateDecompressFile("../test_files/one_symbol.bin", "../test_files/one_symbol_test.txt");
         return CheckIfSimilar("../test_files/one_symbol.txt", "../test_files/one_symbol_test.txt");
     }
 
     bool HuffmanTest::ThirdFile() {
-        CreateFile("../test_files/tests.txt", "../test_files/tests.bin",
-                   "../test_files/tests_test.txt");
+        CreateCompressFile("../test_files/tests.txt", "../test_files/tests.bin");
+        CreateDecompressFile("../test_files/tests.bin", "../test_files/tests_test.txt");
         return CheckIfSimilar("../test_files/tests.txt", "../test_files/tests_test.txt");
     }
 
@@ -89,10 +94,6 @@ namespace my_huffman_tests {
         my_Huffman::Huffman h5("../test_files/one_symbol.txt", "../test_files/one_symbol.bin");
         h5.CleanFiles();
         auto statistics = h5.Statistics();
-        std::cout << std::get<0>(statistics) << '\n'
-                  << std::get<1>(statistics) << '\n'
-                  << std::get<2>(statistics) << '\n';
-
         return std::get<0>(statistics) == 1 &&
                std::get<1>(statistics) == 2049 &&
                std::get<2>(statistics) == 2048;
