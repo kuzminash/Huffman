@@ -6,6 +6,7 @@
 
 namespace my_huffman_tests {
     HuffmanTest::HuffmanTest() : AutoTest() {
+        pass = true;
     }
 
     void HuffmanTest::RunAllTests() {
@@ -63,26 +64,26 @@ namespace my_huffman_tests {
     bool HuffmanTest::DFS(my_Tree::HuffmanTree::Node *node) {
         if (node->left != nullptr && node->right != nullptr) {
             if (node->freq == (node->left->freq + node->right->freq)) {
-                passed = DFS(node->left);
-                passed = DFS(node->right);
+                pass = DFS(node->left);
+                pass = DFS(node->right);
             } else return false;
         } else if (node->left != nullptr) {
             if (node->freq == node->left->freq) {
-                passed = DFS(node->left);
+                pass = DFS(node->left);
             } else return false;
         } else if (node->right != nullptr) {
             if (node->freq == node->right->freq) {
-                passed = DFS(node->right);
+                pass = DFS(node->right);
             } else return false;
         }
-        return passed;
+        return pass;
     }
 
     bool HuffmanTest::CheckTree() {
         my_Huffman::Huffman h3("../test_files/tests.txt", "../test_files/lala.bin");
         h3.CountFreq();
         my_Tree::HuffmanTree Tree(h3.frequency);
-        passed = true;
+        pass = true;
         return DFS(Tree.get_root());
     }
 
@@ -104,7 +105,7 @@ namespace my_huffman_tests {
 
     bool HuffmanTest::CheckCodes() {
         my_Huffman::Huffman h3("../test_files/tests.txt", "../test_files/lala.bin");
-        h3.CountFreq();
+         h3.CountFreq();
         my_Tree::HuffmanTree Tree(h3.frequency);
         Tree.BuildNewCodes(Tree.get_root());
         std::vector<bool> x;

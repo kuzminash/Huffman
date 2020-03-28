@@ -14,9 +14,9 @@ namespace my_huffman_tests {
         void RunAllTests() override;
 
     private:
-        void CreateCompressFile(const char *first, const char *second);
+        static void CreateCompressFile(const char *first, const char *second);
 
-        void CreateDecompressFile(const char *first, const char *second);
+        static void CreateDecompressFile(const char *first, const char *second);
 
         bool FirstFile();
 
@@ -34,7 +34,7 @@ namespace my_huffman_tests {
 
         bool CheckCodes();
 
-        bool passed;
+        bool pass;
     };
 
 }
