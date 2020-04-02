@@ -4,7 +4,7 @@
 #include <vector>
 #include <unordered_map>
 
-namespace my_Tree {
+namespace my_huffman {
 
     enum {
         ELEMENTS = 256

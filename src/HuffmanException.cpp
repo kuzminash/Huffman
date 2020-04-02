@@ -1,7 +1,7 @@
 #include <iostream>
 #include "HuffmanException.h"
 
-namespace my_exception {
+namespace my_huffman {
 
     HuffmanException::HuffmanException(HuffmanException::Exception_type type) noexcept : type{type} {
     }

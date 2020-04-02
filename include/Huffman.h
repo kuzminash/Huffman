@@ -7,7 +7,7 @@
 #include <Huffman_test.h>
 #include "Tree.h"
 
-namespace my_Huffman {
+namespace my_huffman {
     class Huffman {
     public:
         Huffman(const char *input_file, const char *output_file);
@@ -18,22 +18,22 @@ namespace my_Huffman {
 
         std::tuple<size_t, size_t, size_t> Statistics();
 
-        friend class my_huffman_tests::HuffmanTest;
+        friend class my_huffman::HuffmanTest;
     private:
         void CountFreq();
 
         void WriteTable();
 
-        void WriteToFile(my_Tree::HuffmanTree &Tree);
+        void WriteToFile(my_huffman::HuffmanTree &Tree);
 
         void ReadFreq();
 
-        void ReadBits(my_Tree::HuffmanTree &Tree);
+        void ReadBits(my_huffman::HuffmanTree &Tree);
 
         void CleanFiles();
 
         std::size_t quant = 0;
-        std::size_t frequency[my_Tree::ELEMENTS] = {0};
+        std::size_t frequency[my_huffman::ELEMENTS] = {0};
         std::ifstream input_file;
         std::ofstream output_file;
     };

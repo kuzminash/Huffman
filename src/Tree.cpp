@@ -3,7 +3,7 @@
 #include <queue>
 #include "Tree.h"
 
-namespace my_Tree {
+namespace my_huffman {
 
     void HuffmanTree::PlaceNode(std::size_t(&frequency)[ELEMENTS]) {
         for (int i = 0; i < ELEMENTS; i++) {

@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
                 (string(argv[4]) == "-o" || string(argv[4]) == "--output")) {
                 input_file = argv[3];
                 output_file = argv[5];
-                my_Huffman::Huffman h(input_file, output_file);
+                my_huffman::Huffman h(input_file, output_file);
                 h.Compress();
                 auto statistics = h.Statistics();
                 std::cout << std::get<0>(statistics) << '\n'
@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
                 (string(argv[4]) == "-o" || string(argv[4]) == "--output")) {
                 input_file = argv[3];
                 output_file = argv[5];
-                my_Huffman::Huffman h(input_file, output_file);
+                my_huffman::Huffman h(input_file, output_file);
                 h.Decompress();
                 auto statistics = h.Statistics();
                 std::cout << get<0>(statistics) << '\n'
@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
                           << get<2>(statistics) << '\n';
             }
         } else {
-            throw my_exception::HuffmanException(my_exception::HuffmanException::Exception_type::ARG);
+            throw my_huffman::HuffmanException(my_huffman::HuffmanException::Exception_type::ARG);
         }
     }
     catch (const std::bad_alloc &excep) {

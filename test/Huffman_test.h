@@ -5,7 +5,7 @@
 #include "Tree.h"
 #include <fstream>
 
-namespace my_huffman_tests {
+namespace my_huffman {
 
     class HuffmanTest final : public my_base_autotest_class::AutoTest {
     public:
@@ -28,7 +28,7 @@ namespace my_huffman_tests {
 
         bool CheckTree();
 
-        bool DFS(my_Tree::HuffmanTree::Node *node);
+        bool DFS(my_huffman::HuffmanTree::Node *node);
 
         bool Statistics();
 

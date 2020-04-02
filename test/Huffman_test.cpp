@@ -4,7 +4,7 @@
 #include "Tree.h"
 #include "Huffman.h"
 
-namespace my_huffman_tests {
+namespace my_huffman {
     HuffmanTest::HuffmanTest() : AutoTest() {
         pass = true;
     }
@@ -34,12 +34,12 @@ namespace my_huffman_tests {
     }
 
     void HuffmanTest::CreateCompressFile(const char *first, const char *second) {
-        my_Huffman::Huffman h1(first, second);
+        my_huffman::Huffman h1(first, second);
         h1.Compress();
     }
 
     void HuffmanTest::CreateDecompressFile(const char *first, const char *second) {
-        my_Huffman::Huffman h2(first, second);
+        my_huffman::Huffman h2(first, second);
         h2.Decompress();
     }
 
@@ -61,7 +61,7 @@ namespace my_huffman_tests {
         return CheckIfSimilar("../test_files/tests.txt", "../test_files/tests_test.txt");
     }
 
-    bool HuffmanTest::DFS(my_Tree::HuffmanTree::Node *node) {
+    bool HuffmanTest::DFS(my_huffman::HuffmanTree::Node *node) {
         if (node->left != nullptr && node->right != nullptr) {
             if (node->freq == (node->left->freq + node->right->freq)) {
                 pass = DFS(node->left);
@@ -80,22 +80,22 @@ namespace my_huffman_tests {
     }
 
     bool HuffmanTest::CheckTree() {
-        my_Huffman::Huffman h3("../test_files/tests.txt", "../test_files/lala.bin");
+        my_huffman::Huffman h3("../test_files/tests.txt", "../test_files/lala.bin");
         h3.CountFreq();
-        my_Tree::HuffmanTree Tree(h3.frequency);
+        my_huffman::HuffmanTree Tree(h3.frequency);
         pass = true;
         return DFS(Tree.get_root());
     }
 
 
     bool HuffmanTest::CountFreq() {
-        my_Huffman::Huffman h4("../test_files/one_symbol.txt", "../test_files/one_symbol.bin");
+        my_huffman::Huffman h4("../test_files/one_symbol.txt", "../test_files/one_symbol.bin");
         h4.CountFreq();
         return h4.frequency[97] == 1;
     }
 
     bool HuffmanTest::Statistics() {
-        my_Huffman::Huffman h5("../test_files/one_symbol.txt", "../test_files/one_symbol.bin");
+        my_huffman::Huffman h5("../test_files/one_symbol.txt", "../test_files/one_symbol.bin");
         h5.CleanFiles();
         auto statistics = h5.Statistics();
         return std::get<0>(statistics) == 1 &&
@@ -104,9 +104,9 @@ namespace my_huffman_tests {
     }
 
     bool HuffmanTest::CheckCodes() {
-        my_Huffman::Huffman h3("../test_files/tests.txt", "../test_files/lala.bin");
+        my_huffman::Huffman h3("../test_files/tests.txt", "../test_files/lala.bin");
          h3.CountFreq();
-        my_Tree::HuffmanTree Tree(h3.frequency);
+        my_huffman::HuffmanTree Tree(h3.frequency);
         Tree.BuildNewCodes(Tree.get_root());
         std::vector<bool> x;
         x.push_back(0);

@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-namespace my_exception {
+namespace my_huffman {
 
     class HuffmanException final : public std::exception {
     public:
