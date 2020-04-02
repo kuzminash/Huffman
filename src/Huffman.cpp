@@ -11,7 +11,7 @@ namespace my_huffman {
 
     Huffman::Huffman(const char *in_file, const char *out_file) : input_file{in_file, std::ifstream::binary},
                                                                   output_file{out_file,
-                                                                              std::ostream::binary | std::ios::app} {
+                                                                              std::ostream::binary} {
         if (!input_file.is_open()) {
             throw my_huffman::HuffmanException(my_huffman::HuffmanException::Exception_type::FOPIN);
         }

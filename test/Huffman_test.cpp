@@ -96,7 +96,7 @@ namespace my_huffman {
 
     bool HuffmanTest::Statistics() {
         my_huffman::Huffman h5("../test_files/one_symbol.txt", "../test_files/one_symbol.bin");
-        h5.CleanFiles();
+        h5.Compress();
         auto statistics = h5.Statistics();
         return std::get<0>(statistics) == 1 &&
                std::get<1>(statistics) == 2049 &&

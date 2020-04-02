@@ -3,11 +3,12 @@
 
 #include <vector>
 #include <unordered_map>
+#include <climits>
 
 namespace my_huffman {
 
     enum {
-        ELEMENTS = 256
+        ELEMENTS = 1 << CHAR_BIT
     };
 
     class HuffmanTree {
