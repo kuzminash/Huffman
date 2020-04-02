@@ -28,7 +28,7 @@ namespace my_huffman {
 
         bool CheckTree();
 
-        bool DFS(my_huffman::HuffmanTree::Node *node);
+        bool DFS(std::shared_ptr<HuffmanTree::Node> node);
 
         bool Statistics();
 

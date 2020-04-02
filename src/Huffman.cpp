@@ -102,7 +102,7 @@ namespace my_huffman {
     }
 
     void Huffman::ReadBits(my_huffman::HuffmanTree &Tree) {
-        my_huffman::HuffmanTree::Node *p = Tree.get_root();
+        std::shared_ptr<my_huffman::HuffmanTree::Node> p = Tree.get_root();
         for (int i = 0; i < my_huffman::ELEMENTS; i++) {
             quant += frequency[i];
         }

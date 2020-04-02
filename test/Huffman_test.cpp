@@ -61,7 +61,7 @@ namespace my_huffman {
         return CheckIfSimilar("../test_files/tests.txt", "../test_files/tests_test.txt");
     }
 
-    bool HuffmanTest::DFS(my_huffman::HuffmanTree::Node *node) {
+    bool HuffmanTest::DFS(std::shared_ptr<HuffmanTree::Node> node) {
         if (node->left != nullptr && node->right != nullptr) {
             if (node->freq == (node->left->freq + node->right->freq)) {
                 pass = DFS(node->left);

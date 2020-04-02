@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include <climits>
+#include <memory>
 
 namespace my_huffman {
 
@@ -15,36 +16,33 @@ namespace my_huffman {
     public:
         class Node {
         public:
-            Node(char symbol, std::size_t freq, Node *left, Node *right);
-
-            ~Node();
+            Node(char symbol, std::size_t freq, std::shared_ptr<Node> left, std::shared_ptr<Node> right);
 
             class Comparator {
             public:
-                bool operator()(const Node *first, const Node *second);
+                bool operator()(std::shared_ptr<Node> first, std::shared_ptr<Node> second);
             };
 
             char symbol;
             std::size_t freq;
-            Node *left, *right;
+            std::shared_ptr<Node> left;
+            std::shared_ptr<Node> right;
         };
 
         explicit HuffmanTree(std::size_t(&frequency)[ELEMENTS]);
-
-        ~HuffmanTree();
 
         void PlaceNode(std::size_t(&frequency)[ELEMENTS]);
 
         void CollapseTree();
 
-        void BuildNewCodes(Node *root);
+        void BuildNewCodes(std::shared_ptr<Node> root);
 
-        Node *get_root();
+        std::shared_ptr<Node> get_root();
 
         std::unordered_map<char, std::vector<bool>> table;
-        std::vector<Node *> node_vector;
+        std::vector<std::shared_ptr<Node>> node_vector;
     private:
-        Node *root;
+        std::shared_ptr<Node> root;
         std::vector<bool> code;
     };
 

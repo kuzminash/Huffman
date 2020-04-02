@@ -8,51 +8,33 @@ namespace my_huffman {
     void HuffmanTree::PlaceNode(std::size_t(&frequency)[ELEMENTS]) {
         for (int i = 0; i < ELEMENTS; i++) {
             if (frequency[i] > 0) {
-                try {
-                    Node *p = new Node((char) i, frequency[i], nullptr, nullptr);
-                    node_vector.push_back(p);
-                }
-                catch (const std::bad_alloc &excep) {
-                    for (auto i = node_vector.begin(); i != node_vector.end(); i++) {
-                        auto help = i;
-                        delete *help;
-                        throw excep;
-                    }
-                }
+                std::shared_ptr<Node> p(new Node((char) i, frequency[i], nullptr, nullptr));
+                node_vector.push_back(p);
             }
         }
     }
 
-    HuffmanTree::Node::~Node() {
-        delete left;
-        delete right;
-    }
-
-    HuffmanTree::~HuffmanTree() {
-        delete root;
-    }
-
     void HuffmanTree::CollapseTree() {
-        std::priority_queue<Node *, std::vector<Node *>, Node::Comparator> Q1;
+        std::priority_queue<std::shared_ptr<Node>, std::vector<std::shared_ptr<Node>>, Node::Comparator> Q1;
         for (auto p:node_vector) {
             Q1.push(p);
         }
         while (Q1.size() < 2) {
-            Node *new_node = new Node(' ', INT32_MAX, nullptr, nullptr);
+            std::shared_ptr<Node> new_node(new Node(' ', INT32_MAX, nullptr, nullptr));
             Q1.push(new_node);
         }
         std::size_t tree_size = Q1.size();
-        Node *first = nullptr, *second = nullptr;
+        std::shared_ptr<Node> first = nullptr, second = nullptr;
         for (std::size_t i = tree_size; i < 2 * tree_size - 1; i++) {
             first = Q1.top(), Q1.pop();
             second = Q1.top(), Q1.pop();
-            Node *new_node = new Node(' ', first->freq + second->freq, second, first);
+            std::shared_ptr<Node> new_node(new Node(' ', first->freq + second->freq, second, first));
             Q1.push(new_node);
         }
         root = Q1.top(), Q1.pop();
     }
 
-    void HuffmanTree::BuildNewCodes(Node *root) {
+    void HuffmanTree::BuildNewCodes(std::shared_ptr<Node> root) {
         if (!root) {
             return;
         }
@@ -75,16 +57,16 @@ namespace my_huffman {
         CollapseTree();
     }
 
-    HuffmanTree::Node *HuffmanTree::get_root() {
+    std::shared_ptr<HuffmanTree::Node> HuffmanTree::get_root() {
         return root;
     }
 
-    HuffmanTree::Node::Node(char symbol, std::size_t freq, HuffmanTree::Node *left, HuffmanTree::Node *right) :
-                                                            symbol{symbol}, freq{freq}, left{left}, right{right} {
-    }
-
-    bool HuffmanTree::Node::Comparator::operator()(const HuffmanTree::Node *first, const HuffmanTree::Node *second) {
+    bool HuffmanTree::Node::Comparator::operator()(std::shared_ptr<Node> first, std::shared_ptr<Node> second) {
         return first->freq > second->freq;
     }
 
+    HuffmanTree::Node::Node(char symbol, std::size_t freq, std::shared_ptr<Node> left, std::shared_ptr<Node> right) :
+                                                        symbol{symbol}, freq{freq}, left{left}, right{right} {
+
+    }
 }
