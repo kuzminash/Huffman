@@ -26,6 +26,8 @@ namespace my_huffman {
 
         void WriteToFile(my_huffman::HuffmanTree &Tree);
 
+        void WriteBits(my_huffman::HuffmanTree &Tree);
+
         void ReadFreq();
 
         void ReadBits(my_huffman::HuffmanTree &Tree);

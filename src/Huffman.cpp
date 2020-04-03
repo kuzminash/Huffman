@@ -42,10 +42,7 @@ namespace my_huffman {
         }
     }
 
-    void Huffman::WriteToFile(my_huffman::HuffmanTree &Tree) {
-        input_file.clear();
-        input_file.seekg(0);
-        WriteTable();
+    void Huffman::WriteBits(my_huffman::HuffmanTree &Tree) {
         int count = 0;
         unsigned char buffer = 0;
         while (!input_file.eof()) {
@@ -73,6 +70,13 @@ namespace my_huffman {
                 throw my_huffman::HuffmanException(my_huffman::HuffmanException::Exception_type::WRITE);
             }
         }
+    }
+
+    void Huffman::WriteToFile(my_huffman::HuffmanTree &Tree) {
+        input_file.clear();
+        input_file.seekg(0);
+        WriteTable();
+        WriteBits(Tree);
     }
 
     void Huffman::CleanFiles() {
