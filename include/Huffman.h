@@ -26,9 +26,13 @@ namespace my_huffman {
 
         void WriteToFile(my_huffman::HuffmanTree &Tree);
 
+        void WriteBitsWork(unsigned char &buffer, int &count, std::vector<bool> &x);
+
         void WriteBits(my_huffman::HuffmanTree &Tree);
 
         void ReadFreq();
+
+        void ReadBitsWork(my_huffman::HuffmanTree &Tree);
 
         void ReadBits(my_huffman::HuffmanTree &Tree);
 

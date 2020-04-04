@@ -42,6 +42,21 @@ namespace my_huffman {
         }
     }
 
+    void Huffman::WriteBitsWork(unsigned char &buffer, int &count, std::vector<bool> &x) {
+        for (std::size_t i = 0; i < x.size(); i++) {
+            buffer = buffer | x[i] << ((CHAR_BIT - 1) - count);
+            count++;
+            if (count == CHAR_BIT) {
+                count = 0;
+                output_file << buffer;
+                if (output_file.fail() || output_file.bad()) {
+                    throw my_huffman::HuffmanException(my_huffman::HuffmanException::Exception_type::WRITE);
+                }
+                buffer = 0;
+            }
+        }
+    }
+
     void Huffman::WriteBits(my_huffman::HuffmanTree &Tree) {
         int count = 0;
         unsigned char buffer = 0;
@@ -51,18 +66,7 @@ namespace my_huffman {
                 throw my_huffman::HuffmanException(my_huffman::HuffmanException::Exception_type::READ);
             }
             std::vector<bool> x = Tree.table[c];
-            for (std::size_t i = 0; i < x.size(); i++) {
-                buffer = buffer | x[i] << ((CHAR_BIT - 1) - count);
-                count++;
-                if (count == CHAR_BIT) {
-                    count = 0;
-                    output_file << buffer;
-                    if (output_file.fail() || output_file.bad()) {
-                        throw my_huffman::HuffmanException(my_huffman::HuffmanException::Exception_type::WRITE);
-                    }
-                    buffer = 0;
-                }
-            }
+            WriteBitsWork(buffer, count, x);
         }
         if (buffer != 0) {
             output_file << buffer;
@@ -105,11 +109,8 @@ namespace my_huffman {
         }
     }
 
-    void Huffman::ReadBits(my_huffman::HuffmanTree &Tree) {
+    void Huffman::ReadBitsWork(my_huffman::HuffmanTree &Tree) {
         std::shared_ptr<my_huffman::HuffmanTree::Node> p = Tree.get_root();
-        for (int i = 0; i < my_huffman::ELEMENTS; i++) {
-            quant += frequency[i];
-        }
         int count = 0;
         char byte;
         byte = input_file.get();
@@ -137,6 +138,13 @@ namespace my_huffman {
                 }
             }
         }
+    }
+
+    void Huffman::ReadBits(my_huffman::HuffmanTree &Tree) {
+        for (int i = 0; i < my_huffman::ELEMENTS; i++) {
+            quant += frequency[i];
+        }
+        ReadBitsWork(Tree);
     }
 
     void Huffman::Decompress() {
